@@ -15,3 +15,32 @@ if (getComputerChoice === 1){
 }
 //use console to test
 console.log(computerSelection);
+
+// create function that accepts two parameters
+let playerChoice;
+// let playerSelection = playerChoice.toLowerCase();
+function playRPSGame(playerSelection, computerSelection) {
+// return a string declaring the winner
+if (playerSelection === "rock" && computerSelection === "scissors"){
+return "You win! Rock beats Scissors";
+} else if (playerSelection === "scissors" && computerSelection === "rock"){
+return "You lose! Rock beats Scissors";
+} else if (playerSelection === "paper" && computerSelection === "rock"){
+return "You win! Paper beats Rock";
+} else if (playerSelection === "rock" && computerSelection === "paper"){
+return "You Lose! Paper beats Rock";
+} else if (playerSelection === "scissors" && computerSelection === "paper"){
+return "You win! Scissors beats Paper";
+} else if (playerSelection === "paper" && computerSelection === "scissors"){
+return "You lose! Scissors beats Paper";
+} else {
+return "Tie!";
+}
+}
+
+
+//test in console
+  
+const playerSelection = "rock";
+// const computerSelection = getComputerChoice();
+console.log(playRPSGame(playerSelection, computerSelection));
