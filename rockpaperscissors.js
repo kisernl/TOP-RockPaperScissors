@@ -1,4 +1,4 @@
-
+// The Odin Project - Rock, Paper, Scissors JS Project
 
 // create a prompt function to collect user/player input/choice
 let choice = prompt("Make your choice: rock, paper, or scissors?");
@@ -34,8 +34,11 @@ console.log(computerSelection);
 // create function that accepts two parameters
 // let playerChoice;
 // let playerSelection = playerChoice.toLowerCase();
-function playRPSGame(playerSelection, computerSelection) { 
+function playRound(playerSelection, computerSelection) { 
 // return a string declaring the winner
+
+//THIS IS THE ORIGINAL SINGLE ROUND CODE
+/*
 if (playerSelection === "rock" && computerSelection === "scissors"){
 return "You win! Rock beats Scissors";
 } else if (playerSelection === "scissors" && computerSelection === "rock"){
@@ -52,11 +55,37 @@ return "You lose! Scissors beats Paper";
 return "Tie!";
 }
 }
+*/
+if (playerSelection === "rock" && computerSelection === "scissors"){
+  return playerWin1;
+  } else if (playerSelection === "scissors" && computerSelection === "rock"){
+  return playerLose1;
+  } else if (playerSelection === "paper" && computerSelection === "rock"){
+  return playerWin2; 
+  } else if (playerSelection === "rock" && computerSelection === "paper"){
+  return playerLose2; 
+  } else if (playerSelection === "scissors" && computerSelection === "paper"){
+  return playerWin3; 
+  } else if (playerSelection === "paper" && computerSelection === "scissors"){
+  return playerLose3; 
+} else if (playerSelection === computerSelection){
+  return draw;
+  } else {
+  return "You failed to enter a valid entry"; 
+  }
+  }
+  let playerWin1 = "You win! Rock beats Scissors";
+  let playerWin2 = "You win! Paper beats Rock";
+  let playerWin3 = "You win! Scissors beats Paper";
+  let playerLose1 = "You lose! Rock beats Scissors";
+  let playerLose2 = "You Lose! Paper beats Rock";
+  let playerLose3 = "You lose! Scissors beats Paper";
+  let draw = "Tie!";
 
 
 //test in console
   
 // const playerSelection = "rock";
 // const computerSelection = getComputerChoice();
-console.log(playRPSGame(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
 
