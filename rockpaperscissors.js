@@ -1,91 +1,107 @@
 // The Odin Project - Rock, Paper, Scissors JS Project
+let computerWins = 0;
+let playerWins = 0;
+let draw = 0;
+let rounds = 0;
 
-// create a prompt function to collect user/player input/choice
-let choice = prompt("Make your choice: rock, paper, or scissors?");
-let playerSelection = choice.toLowerCase();
+let play = prompt(`Want to play? Type "yes" or "no"`)
+let playResponse = play.toLowerCase();
 
-if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-  alert("Good luck!");
+if (playResponse === "yes") {
+  init();
 } else {
-  alert(`Invalid Input. Only "rock" or "paper" or "scissors" accepted.`);
+  alert("Your loss.");
 }
-// NEED to learn how to send the user back to the prompt until valid input received
 
-console.log(playerSelection)
+function init() {
 
-// create a function titled getComputerChoice
-let getComputerChoice = Math.floor((Math.random()*3) + 1);
-// include three strings "Rock "Paper" "Scissors"
-// above code randoms chooses an integer 1, 2, or 3 
-// - need to assign Rock, Paper, & Scissor to these integers
-let computerSelection;
-if (getComputerChoice === 1){
-	computerSelection = "rock";
-} else if (getComputerChoice === 2){
-  computerSelection = "paper";
-} else if (getComputerChoice === 3){
-  computerSelection = "scissors";
-} else {
-   computerSelection = "Invalid Selection";
-}
-//use console to test
-console.log(computerSelection);
+  let userChoice = askForChoice();
+  let computerSelection = getComputerChoice();
 
-// create function that accepts two parameters
-// let playerChoice;
-// let playerSelection = playerChoice.toLowerCase();
-function playRound(playerSelection, computerSelection) { 
-// return a string declaring the winner
+  console.log(`round ${rounds + 1}`);
+  console.log(`player: ${userChoice}`);
+  console.log(`computer: ${computerSelection}`);
 
-//THIS IS THE ORIGINAL SINGLE ROUND CODE
-/*
-if (playerSelection === "rock" && computerSelection === "scissors"){
-return "You win! Rock beats Scissors";
-} else if (playerSelection === "scissors" && computerSelection === "rock"){
-return "You lose! Rock beats Scissors";
-} else if (playerSelection === "paper" && computerSelection === "rock"){
-return "You win! Paper beats Rock";
-} else if (playerSelection === "rock" && computerSelection === "paper"){
-return "You Lose! Paper beats Rock";
-} else if (playerSelection === "scissors" && computerSelection === "paper"){
-return "You win! Scissors beats Paper";
-} else if (playerSelection === "paper" && computerSelection === "scissors"){
-return "You lose! Scissors beats Paper";
-} else {
-return "Tie!";
-}
-}
-*/
-if (playerSelection === "rock" && computerSelection === "scissors"){
-  return playerWin1;
-  } else if (playerSelection === "scissors" && computerSelection === "rock"){
-  return playerLose1;
-  } else if (playerSelection === "paper" && computerSelection === "rock"){
-  return playerWin2; 
-  } else if (playerSelection === "rock" && computerSelection === "paper"){
-  return playerLose2; 
-  } else if (playerSelection === "scissors" && computerSelection === "paper"){
-  return playerWin3; 
-  } else if (playerSelection === "paper" && computerSelection === "scissors"){
-  return playerLose3; 
-} else if (playerSelection === computerSelection){
-  return draw;
+  let winnerSelection = playRound(userChoice, computerSelection);
+  alert(winnerSelection);
+  console.log(winnerSelection);
+
+  if (rounds === 5) {
+    alert("Game Over");
+    console.log("Game Over...")
+    if (playerWins > computerWins) {
+      alert("You WIN!");
+      console.log(`You've Won -- ${playerWins} to ${computerWins}`);
+    } else if (computerWins > playerWins) {
+      alert("Better Luck Next Time... Loser!");
+      console.log(`You Lost -- ${playerWins} to ${computerWins}`);
+    } else if (playerWins === computerWins) {
+      alert("Draw! Rematch?");
+      console.log(`Draw -- ${playerWins} to ${computerWins}`);
+    } else {
+      alert("Error");
+    }
   } else {
-  return "You failed to enter a valid entry"; 
+    init();
   }
+
+}
+
+function askForChoice() {
+  let userInput;
+  while (true) {
+    userInput = prompt("Choose one: Rock, Paper, or Scissors");
+    let userSelection = userInput.toLowerCase();
+
+    if (
+      userSelection === "rock" ||
+      userSelection === "paper" ||
+      userSelection === "scissors"
+    ) {
+      alert("Good luck!");
+      return userSelection;
+    } else {
+      alert("Invalid Input. Only rock, paper, or scissors accepted.");
+    }
   }
-  let playerWin1 = "You win! Rock beats Scissors";
-  let playerWin2 = "You win! Paper beats Rock";
-  let playerWin3 = "You win! Scissors beats Paper";
-  let playerLose1 = "You lose! Rock beats Scissors";
-  let playerLose2 = "You Lose! Paper beats Rock";
-  let playerLose3 = "You lose! Scissors beats Paper";
-  let draw = "Tie!";
+}
 
+function getComputerChoice() {
+  let computerChoice = Math.floor(Math.random() * 3 + 1);
 
-//test in console
-  
-// const playerSelection = "rock";
-// const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+  if (computerChoice === 1) {
+    return "rock";
+  } else if (computerChoice === 2) {
+    return "paper";
+  } else if (computerChoice === 3) {
+    return "scissors";
+  } else {
+    return "Invalid Selection";
+  }
+}
 
+function playRound(playerSelection, computerSelection) {
+  rounds++;
+  if (playerSelection === "rock" && computerSelection === "scissors") {
+    playerWins++;
+    return "You win! Rock beats Scissors";
+  } else if (playerSelection === "scissors" && computerSelection === "rock") {
+    computerWins++;
+    return "You lose! Rock beats Scissors";
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    playerWins++;
+    return "You win! Paper beats Rock";
+  } else if (playerSelection === "rock" && computerSelection === "paper") {
+    computerWins++;
+    return "You Lose! Paper beats Rock";
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    playerWins++;
+    return "You win! Scissors beats Paper";
+  } else if (playerSelection === "paper" && computerSelection === "scissors") {
+    computerWins++;
+    return "You lose! Scissors beats Paper";
+  } else if (playerSelection === computerSelection) {
+    draw++;
+    return "Tie!";
+  }
+}
