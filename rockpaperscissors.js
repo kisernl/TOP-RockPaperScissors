@@ -4,7 +4,7 @@ let playerWins = 0;
 let draw = 0;
 let rounds = 0;
 
-let play = prompt(`Want to play? Type "yes" or "no"`)
+let play = prompt(`Want to play? Type "yes" or "no"`);
 let playResponse = play.toLowerCase();
 
 if (playResponse === "yes") {
@@ -14,7 +14,6 @@ if (playResponse === "yes") {
 }
 
 function init() {
-
   let userChoice = askForChoice();
   let computerSelection = getComputerChoice();
 
@@ -28,7 +27,7 @@ function init() {
 
   if (rounds === 5) {
     alert("Game Over");
-    console.log("Game Over...")
+    console.log("Game Over...");
     if (playerWins > computerWins) {
       alert("You WIN!");
       console.log(`You've Won -- ${playerWins} to ${computerWins}`);
@@ -44,7 +43,6 @@ function init() {
   } else {
     init();
   }
-
 }
 
 function askForChoice() {
