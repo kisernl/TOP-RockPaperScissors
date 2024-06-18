@@ -111,9 +111,22 @@ function playRound(playerSelection, computerSelection) {
 
 function checkForWinner() {
   if (playerWins >= 5) {
+    document.getElementById("play-again").style.display = "block";
     return "Congratulations! You won the game with 5 wins.";
   } else if (computerWins >= 5) {
+    document.getElementById("play-again").style.display = "block";
     return "Game over! You lost the game with 5 losses.";
   }
-  return ""; // No winner yet
+  return "..."; // No winner yet
 }
+
+function resetGame() {
+  playerWins = 0;
+  computerWins = 0;
+  document.getElementById("tally").textContent = "[Win/Loss Tally]";
+  document.getElementById("round-result").textContent = "[Round Result]";
+  document.getElementById("winner-message").textContent = "...";
+  document.getElementById("play-again").style.display = "none";
+}
+
+document.getElementById("play-again").addEventListener("click", resetGame);

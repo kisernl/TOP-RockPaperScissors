@@ -3,17 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Rock|Paper|Scissors</title>
   </head>
   <body>
-    <section class="buttons">
+    <div class="description">
+      <h1>Rock | Paper | Scissors</h1>
+      <br />
+      <p>You vs Your Computer... first to 5 wins!</p>
+      <p>Click your selection below to begin!</p>
+    </div>
+    <div class="buttons">
       <button id="btnRock">Rock</button>
       <button id="btnPaper">Paper</button>
       <button id="btnScissors">Scissors</button>
-      <p id="round-result"></p>
-      <div id="tally"></div>
-      <div id="winner-message"></div>
-    </section>
+    </div>
+    <div class="results">
+      <div id="round-result">[Round Result]</div>
+      <br />
+      <div id="tally">[Win/Loss Tally]</div>
+      <br />
+      <div id="winner-message">...</div>
+    </div>
+    <div class="reset">
+      <button id="play-again" style="display: none; width: fit-content">
+        Play Again?
+      </button>
+    </div>
 
     <script src="rps-ui.js"></script>
   </body>
